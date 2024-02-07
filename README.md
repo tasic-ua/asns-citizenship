@@ -15,13 +15,13 @@ was caused by the strange behavior of some resources, but you can use these scri
 for another purpose with other country codes. Let's start...
 
 I selected two dates to check the changes from the first date to the second. Let's name
-them <date1> and <date2>.
+them &lt;date1&gt; and &lt;date2&gt;.
 
 From the _https://ftp.ripe.net/pub/stats/ripencc/_ I took files
-_delegated-ripencc-<date1>_ and _delegated-repencc-<date2>_
+_delegated-ripencc-&lt;date1&gt;_ and _delegated-repencc-&lt;date2&gt;_
 
 With **split_file.py** I split these files on ASN, IPv4, and IPv6 parts and got 6
-files. Really for further research, I used only _ansn-<date1>_ and _asns-<date2>_.
+files. Really for further research, I used only _ansn-&lt;date1&gt;_ and _asns-&lt;date2&gt;_.
 But files with IP addresses also can be compared by one of the scripts.
 
 With **asns_check.py** I take two files with ASNs prepared by split_file.py, define
