@@ -25,8 +25,8 @@ files. Really for further research, I used only _ansn-<date1>_ and _asns-<date2>
 But files with IP addresses also can be compared by one of the scripts.
 
 With **asns_check.py** I take two files with ASNs prepared by split_file.py, define
-"from the country", "to the country" and get the file with dates, citizenship and
+"from the country", and "to the country" and get the file with dates, citizenship and
 current org hanles.
 
 With **get_address.py** I receive RL contact data from org handles (name, address,
-phone number, and email)
+phone number, and email) by requests to _http://rdap.db.ripe.net/entity/_
