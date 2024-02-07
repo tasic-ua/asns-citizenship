@@ -17,15 +17,16 @@ for another purpose with other country codes. Let's start...
 I selected two dates to check the changes from the first date to the second. Let's name
 them <date1> and <date2>.
 
-From the https://ftp.ripe.net/pub/stats/ripencc/ I took files
-delegated-ripencc-<date1> and delegated-repencc-<date2>
+From the _https://ftp.ripe.net/pub/stats/ripencc/_ I took files
+_delegated-ripencc-<date1>_ and _delegated-repencc-<date2>_
 
-With split_file.py I split these files on ASN, IPv4, and IPv6 parts and got 6
-files. Really for further research, I needed only ansn-<date1> and asns-<date2>
+With **split_file.py** I split these files on ASN, IPv4, and IPv6 parts and got 6
+files. Really for further research, I used only _ansn-<date1>_ and _asns-<date2>_.
+But files with IP addresses also can be compared by one of the scripts.
 
-With asns_check.py I take two files with ASNs prepared by split_file, define
+With **asns_check.py** I take two files with ASNs prepared by split_file.py, define
 "from the country", "to the country" and get the file with dates, citizenship and
 current org hanles.
 
-With get_address.py I receive RL contact data from org handles (name, address,
+With **get_address.py** I receive RL contact data from org handles (name, address,
 phone number, and email)
