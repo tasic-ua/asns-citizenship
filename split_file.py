@@ -66,3 +66,4 @@ if __name__ == '__main__':
         f_name = input("Input file name to split:")
 
     split_file(f_name)
+    
