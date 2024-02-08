@@ -1,9 +1,31 @@
 #!/usr/bin/python3
 
+'''
+The script in interactive mode builds URLs to make requests for conversation 
+addresses to longitude/latitude. It shows the current address for each ASN 
+taken from the input file and proposes to agree with it or enter a changed
+address. Then it requests a country of org (enter to skip the country field).
+
+Arguments:
+    addresses<current_date>-<current_time>.json -- filename
+
+In the output JSON file are the next fields
+    AS number
+    RL address
+    URL to make a request (without key)
+'''
+
 import sys
 import json
 
 def build_urls(f_name):
+    '''
+    Prepares URLs to make requests
+    Parameters
+    --------------
+    f_name : str
+        A filename of JSON data with RL addresses
+    '''
     with open(sys.argv[1]) as f:
         x = f.read()
     jsn = json.loads(x)
