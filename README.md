@@ -28,5 +28,7 @@ With **asns_check.py** I take two files with ASNs prepared by split_file.py, def
 "from the country", and "to the country" and get the file with dates, citizenship and
 current org hanles.
 
+_Here must be description of NWI-10, getting list to exclustion and the result._
+
 With **get_address.py** I receive RL contact data from org handles (name, address,
 phone number, and email) by requests to _http://rdap.db.ripe.net/entity/_
