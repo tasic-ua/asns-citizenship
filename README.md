@@ -15,10 +15,12 @@ From the _https://ftp.ripe.net/pub/stats/ripencc/_ I took files _delegated-ripen
 With **split_file.py** I split these files on ASN, IPv4, and IPv6 parts and got 6 files. Really for further research, I used only _ansn-&lt;date1&gt;_ and 
 _asns-&lt;date2&gt;_. But files with IP addresses also can be compared by one of the scripts.
 
-With **asns_check.py** I take two files with ASNs prepared by split_file.py, define "from the country", and "to the country" and get the file with dates, citizenship and current org hanles.
+With **asns_check.py** I take two files with ASNs prepared by split_file.py, define "from the country", and "to the country" and get the file with dates, citizenship, and current org hanles.
 
 _Here must be description of NWI-10, getting list to exclustion and the result._
 
 With **get_address.py** I receive RL contact data from org handles (name, address, phone number, and email) by requests to _http://rdap.db.ripe.net/entity/_
 
-This is the most complicated and weak part of the set. I had to find latitude and longitude by the address from the org handle. First of all as far as I could find to use the Google API for this purpose you have to be its client and have a Google Cloud Project. I didn't have one so I looked for another conversion service. As a result, I came to maptiler.com. It makes this kind of conversion although a little bit worse than Google. To use it you have to register there and get the key that you will use in every request. There is a limit of requests but it is bigger than needed to make conversion for this task.
+This is the most complicated and weak part of the set. I had to find latitude and longitude by the address from the org handle. First of all as far as I could find to use the Google API for this purpose you have to be its client and have a Google Cloud Project. I didn't have one so I looked for another conversion service. As a result, I came to maptiler.com. Although it makes this kind of conversion a little bit worse than Google. You have to register there and get the key you will use in every request. There is a limit of requests but it is bigger than needed to make conversion for this task.
+
+So we need to prepare the URLs to make conversation requests. I used **build_urls.py** for this purpose. The script is interactive. It shows you the address which you can edit and reenter and then it requests the country. It is caused by assigning occupied territories of Ukraine to ru. Therefore the conversation engine works very poorly in such circumstances. So sometimes adding a separate field "country" to request can improve the result. It prepares file request-urls.json with URLs to use in requests.
