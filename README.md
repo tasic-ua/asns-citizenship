@@ -4,7 +4,7 @@ A set of scripts to get info from RIPE DB about changes in ASN's citizenships an
 This is a collection of scripts to work with the country attributes of ASNs from the RIPE NCC site. I give a way that I used them one by one and then shortly
 describe every script. Feel free to contact the author if you have questions or suggestions.
 
-## Work step-by-step
+## Step-by-step to the result
 
 I had to find ASNs that changed their country code from RU to UA during the war and place them on the map according to the data from RIPE DB. Of course, my work was caused by the strange behavior of some resources, but you can use these scripts for another purpose with other country codes. Let's start...
 
