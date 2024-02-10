@@ -70,19 +70,15 @@ if __name__ == '__main__':
     while i < len(sys.argv):
         if sys.argv[i][:2] == "-q":
             quiet = True
-            i += 1
-            continue
         elif sys.argv[i][:2] == "-k":
             if len(sys.argv[i]) > 2:
                 key = sys.argv[i][2:]
             else:
                 i += 1
                 key = sys.argv[i]
-                i += 1
-                continue
         else:
             f_name = sys.argv[i]
-            i += 1
+        i += 1
 
     if f_name == None:
         f_name = str(input("Enter filename: ")).rstrip()
