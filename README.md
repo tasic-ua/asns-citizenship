@@ -64,9 +64,43 @@ As you can see the first four lines are the coordinates of an image pixels and t
     - to country
     - current org handle
   
-+ **build_urls.py** -- 
++ **build_urls.py** -- The script in interactive mode builds URLs to make requests for conversation addresses to longitude/latitude. It shows the current address for each ASN taken from the input file and proposes to agree with it or enter a changed address. Then it requests a country of org (enter to skip the country field).
+
+    Arguments:
+    - addresses<current_date>-<current_time>.json -- filename
+
+    In the output JSON file are the next fields
+    - AS number
+    - RL address
+    - URL to make a request (without key)
   
-+ **draw_points.py**
++ **draw_points.py** -- This script can place points on a map. To get the result you have to have:
+    - image file with map (PNG file);
+    - text file provided binding image map to geo coordinates;
+    - text file with ASNs and coordinates to place marks on a map;
+    - PNG image with mark to place on the image map;
+      
+    To use an image as a map you have to bind a map on the image to the real longitude latitude. There are different tools on the Internet to do this. Or you may do it yourself with help of the Google and any image editor that can tell you the point position on an image. So you have to make a file like this
+```
+    XY,1,0,0
+    XY,2,1167,0
+    XY,3,1167,780
+    XY,4,0,780
+    LL,1,  30.329430,  49.075565
+    LL,2,  40.622950,  49.116228
+    LL,3,  40.672959,  44.485199
+    LL,4,  30.379439,  44.444536
+```
+The first four points are the x and y coordinates of the corners of the image, second four points are the longitude/latitude coordinates on the map. So for example you have the image of the map in a file map_image.png (the script expects that it is PNG) then binding information in the above-described format you have to put in the text file map_image.borders
+
+These files (png and borders) must be in the directory where you ran the script. Also, you need a file with AS numbers and corresponding LL coordinates (output of for_map.py, f.e. my_points.txt)
+
+And you need an image of a mark that you are going to place on the map. You may name it mark.png and place it in the current directory or point to it after the -m flag when you run the script.
+
+So in this example, you run the script with the command:
+```
+draw_points.py -b map_image -p my_points.txt -m mark.png
+```
 + **for_map.py**
 + **get_address.py**
 + **get_geo_for_asns.py**
