@@ -130,6 +130,35 @@ draw_points.py -b map_image -p my_points.txt -m mark.png
       
     and add to it available from the list "name, address, phone, email" fields from org handle.
 
-+ **get_geo_for_asns.py**
-+ **print_result.py**
-+ **split_file.py**
++ **get_geo_for_asns.py** -- This script gets prepared URLs from an input file, adds a key to the URL, and makes a request to https://api.maptiler.com/geocoding/ converting RL address into latitude/longitude. The result of every request outputs to a separate file with the name AS&lt;number&gt;-location.json
+```
+Usage:
+get_geo_for_asns.py [-q] [-k key] filename
+    -q - be quiet, do not ask approval for every request
+    -k key - key identification to maptiler
+    filename - file with prepared URLs
+```
+  
++ **print_result.py** --     Takes the output filename of get_address.py execution in JSON format and prints
+    - AS number
+    - date country
+    - date country
+  
+    in human-readable format
+
++ **split_file.py** -- The program splits a file delegated-ripencc-<date> taken from https://ftp.ripe.net/pub/stats/ripencc/ into three parts with ASNs, IPv4, and IPv6 records. Output files are placed in the current directory.
+
+    Example:
+        split_file.py delegated-ripencc-20220223
+
+    if you did not give filename as argument it asks you to enter filename.
+
+    Output:
+    - asns-20220223
+    - ipv4--20220223
+    - ipv6-20220223
+  
+    files in the current directory
+  
+    Files contain ASNs, IPv4, and IPv6 records from RIPE DB respectively.
+
