@@ -101,7 +101,20 @@ So in this example, you run the script with the command:
 ```
 draw_points.py -b map_image -p my_points.txt -m mark.png
 ```
-+ **for_map.py**
++ **for_map.py** -- The script takes ASNs from the file addresses<date>-<time>.json file (should be an argument to the script, and asn by asn takes most relevant coordinates from files AS<number>location.json. Option -p path has to point to the directory where the files are located. If a path is not specified the script expects files in the current directory. The script prints prepared data to stdout, and error messages to stderr.
+  
+    Possible errors are:
+    - there are no coordinates in the AS<number>-location.json file
+    - there is no appropriate AS<number>-location.json
+
+    If you redirect script output to the file you get the prepared data in the file and a list of errors on the screen. If there are no coordinates in the JSON file it means that maptiles did not find any coordinates by the given address. You have to handle this situation in some way.
+
+    If there is no JSON file it means that for some reason you miss to prepare this ASN for request to maptiler.
+
+    Maptiler can return more than one pair of coordinates. It attributes every pair to a relevance level. The first pair has the highest relevance. So the program takes the first pair of coordinates from AS<number>-location.json file. I did not have a case when the less relevance points to the right location. But you can check...
+
+    The output of this script (and the corresponding input of the script to place points on a map) is used with plain text data to allow easy editing of the prepared data.
+  
 + **get_address.py**
 + **get_geo_for_asns.py**
 + **print_result.py**
