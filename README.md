@@ -115,7 +115,21 @@ draw_points.py -b map_image -p my_points.txt -m mark.png
 
     The output of this script (and the corresponding input of the script to place points on a map) is used with plain text data to allow easy editing of the prepared data.
   
-+ **get_address.py**
++ **get_address.py** -- The script takes as argument the filename of the file prepared by asns_check.py collects information from RIPE DB (LIR name, address, phone, email address), and saves the output in json format to file addresses-<cur_date>-<cur_time>.json in the current directory.
+  
+    Arguments:
+    - result-<current_date>-<current_time>.json -- filename
+
+    The output json file keeps the data from the input file
+    - AS number
+    - first date
+    - from country
+    - second date
+    - to country
+    - current org handle
+      
+    and add to it available from the list "name, address, phone, email" fields from org handle.
+
 + **get_geo_for_asns.py**
 + **print_result.py**
 + **split_file.py**
