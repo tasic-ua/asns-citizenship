@@ -17,7 +17,7 @@ _asns-&lt;date2&gt;_. But files with IP addresses also can be compared by one of
 
 With **asns_check.py** I take two files with ASNs prepared by split_file.py, define "from the country", and "to the country" and get the file with dates, citizenship, and current org hanles.
 
-There is a complication in this step. RIPE NCC changed the way they set the country attribute in ASN info according to []NWI-10](https://labs.ripe.net/author/wilhelm/impact-of-nwi-10-on-country-codes-in-delegated-statistics/). They did the changes in two steps and the second step they did on November 10, 2022. So to get clearer results I had to exclude ASNs changed on this date. So I took files with statistics on November 29, and December 1 and excluded from my list ASNs that were changed on this date. asns_check.py accepts as an option "exclude file" where you can point ASNs to exclude from the result.
+There is a complication in this step. RIPE NCC changed the way they set the country attribute in ASN info according to [NWI-10](https://labs.ripe.net/author/wilhelm/impact-of-nwi-10-on-country-codes-in-delegated-statistics/). They did the changes in two steps and the second step they did on November 10, 2022. So to get clearer results I had to exclude ASNs changed on this date. So I took files with statistics on November 29, and December 1 and excluded from my list ASNs that were changed on this date. asns_check.py accepts as an option "exclude file" where you can point ASNs to exclude from the result.
 
 With **get_address.py** I receive RL contact data from org handles (name, address, phone number, and email) by requests to _http://rdap.db.ripe.net/entity/_
 
@@ -30,6 +30,7 @@ The next step is making requests to _https://api.maptiler.com/geocoding/_ to rec
 We are still moving through the complicated part of the set. With **for_map.py** I prepare the data to place points on a map. The data is prepared in plain text to allow easy editing. It prints output data to stdout and errors to stderr, so you can redirect ready data end errors to different files and handle them separately.
 
 The last step of my journey is placing marks on a map. With **draw_points.py** I place marks on a map. When you take some part of a map to an image file you have only "an image". To convert this image to a map you have to bind image pixels to longitude/latitude. There are different tools to make it or you can make it yourself with the help of Google and an editor that gives you point coordinates. But at last, you need a file with image point coordinates and appropriate longitude/latitude. A file like this
+```
 XY,1,0,0
 XY,2,1167,0
 XY,3,1167,780
@@ -38,5 +39,36 @@ LL,1,  30.329430,  49.075565
 LL,2,  40.622950,  49.116228
 LL,3,  40.672959,  44.485199
 LL,4,  30.379439,  44.444536
-
+```
 As you can see the first four lines are the coordinates of an image pixels and the second four lines are corresponding longitude/latitude coordinates. The script works with images in PNG format. And the script needs an image of the mark to place on a map. It places the mark sign the way that in the given coordinates is a bottom-center point of the mark image. When you have all of these you can place the marks on a map. There is a directory with example files to see how it works.
+
+## Script descriptions
+
++ **asns_check.py** -- Compares two files with ASNs received as the output of split_file.py about ASNs that
+    changed their "citizenship" from one country to another. During execution
+    requests "from" and "to" countries in two-letter ISO format (UA, RU, US, DE, PL,
+    etc).
+  
+    Arguments:
+    - asns-20220223 -- first file with ASNs list (output of split_file.py)
+    - asns-20231101 -- second file with ASNs list (output of split_file.py)
+    - exclude.txt -- text file with ASNs list that must be excluded from comparison, one AS number per line. Optional parameter
+
+    After comparison makes requests to stat.ripe.net and receives the current ORG nick handle of each found ASN.
+
+    Out file named result-<current_date>-<current_time>.json puts in the current directory. An output file contains data:
+    - AS number
+    - first date
+    - from country
+    - second date
+    - to country
+    - current org handle
+  
++ **build_urls.py** -- 
+  
++ **draw_points.py**
++ **for_map.py**
++ **get_address.py**
++ **get_geo_for_asns.py**
++ **print_result.py**
++ **split_file.py**
