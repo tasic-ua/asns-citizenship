@@ -2,30 +2,33 @@
 
 '''
 The script takes ASNs from the file addresses<date>-<time>.json file (should be
-argument tp the script, and asn by asn takes most relevant coordinates from
-files AS<number>location.json. Option -p path has to poin the directory where
-the files are located. If path is not specified the script expects files in the
-current directory.
-The script prints prepared data to stdout, and error messages to stderr.
+an argument to the script, and asn by asn takes most relevant coordinates from
+files AS<number>location.json. Option -p path has to point to the directory
+where the files are located. If a path is not specified the script expects files
+in the current directory. The script prints prepared data to stdout, and error
+messages to stderr.
+
 Possible errors are:
     - there are no coordinates in the AS<number>-location.json file
-    - thre is no appropriate AS<number>-location.json
-   If you redirect script output to file you get the prepared data in the file
-and list of errors on the screen.
-   If there are no coordinates in the JSON file it means that maptiles did not
-find any coordinates by the given address. You have to handle this situation in
-some way.
-   If there is no JSON file it means that for some reason you miss to prepare
-this ASN for request to maptiler.
+    - there is no appropriate AS<number>-location.json
 
-   Maptiler can return more than one pair of coordinates. It attributes every
-pair with relevance level. First pair has the highest relevance. So the program
-takes first pair of coordinates from AS<number>-location.json file. I did not
-have the case when the less relevance points to right location. But you can
-check...
+If you redirect script output to the file you get the prepared data in the file
+and a list of errors on the screen. If there are no coordinates in the JSON file
+it means that maptiles did not find any coordinates by the given address. You
+have to handle this situation in some way.
 
-Output of this script (and corresponded input of the script to place points on a
-map) use with plain text data to allow easy editing the prepared data.
+If there is no JSON file it means that for some reason you miss to prepare this
+ASN for a request to maptiler.
+
+Maptiler can return more than one pair of coordinates. It attributes every pair
+to a relevance level. The first pair has the highest relevance. So the program
+takes the first pair of coordinates from AS<number>-location.json file. I did
+not have a case when the less relevance points to the right location. But you
+can check...
+
+The output of this script (and the corresponding input of the script to place
+points on a map) is used with plain text data to allow easy editing of the
+prepared data.
 '''
 
 import json
